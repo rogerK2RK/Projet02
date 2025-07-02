@@ -1,9 +1,17 @@
 const express = require('express');
 const router = express.Router();
+const {
+  getAllSuppliers,
+  getSupplierById,
+  createSupplier,
+  updateSupplier,
+  deleteSupplier
+} = require('../controllers/supplier.controller');
 
-//ajouter les routes plus tard ici
-router.get('/', (req, res) => {
-  res.send('Suppliers route ok');
-});
+router.get('/', getAllSuppliers);
+router.get('/:id', getSupplierById);
+router.post('/', createSupplier);
+router.put('/:id', updateSupplier);
+router.delete('/:id', deleteSupplier);
 
 module.exports = router;
