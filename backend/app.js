@@ -5,13 +5,26 @@ const connectDB = require('./config/db');
 
 dotenv.config();
 
+const User = require('./models/User');
+
+// Ajouter un utilisateur test si non existant
+const createTestUser = async () => {
+  const exists = await User.findOne({ email: 'test@admin.com' });
+  if (!exists) {
+    await User.create({ email: 'test@admin.com', password: '123456' });
+    console.log('Utilisateur test créé : test@admin.com / 123456');
+  }
+};
+
 const app = express();
-connectDB();
+connectDB().then(createTestUser);
 const authRoutes = require('./routes/auth.routes');
 const furnitureRoutes = require('./routes/furniture.routes');
 const materialRoutes = require('./routes/material.routes');
 const categoryRoutes = require('./routes/category.routes');
 const supplierRoutes = require('./routes/supplier.routes');
+
+
 
 app.use(cors());
 app.use(express.json());

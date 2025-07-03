@@ -15,11 +15,11 @@ exports.getAllFurniture = async (req, res) => {
 //  GET one furniture by ID
 exports.getFurnitureById = async (req, res) => {
   try {
-    const item = await Furniture.findById(req.params.id)
+    const furniture = await Furniture.findById(req.params.id)
       .populate('category')
       .populate('materials');
-    if (!item) return res.status(404).json({ message: 'Not found' });
-    res.json(item);
+    if (!furniture) return res.status(404).json({ error: 'Not found' });
+    res.json(furniture);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

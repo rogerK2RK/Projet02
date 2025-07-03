@@ -18,12 +18,10 @@ function FurnitureForm() {
   }, []);
 
   useEffect(() => {
-    // Charger catégories
     axios.get('http://localhost:5000/api/categories')
       .then(res => setCategories(res.data))
       .catch(err => console.error('Erreur chargement catégories', err));
 
-    // Charger matériaux
     axios.get('http://localhost:5000/api/materials')
       .then(res => setMaterials(res.data))
       .catch(err => console.error('Erreur chargement matériaux', err));
@@ -57,18 +55,31 @@ function FurnitureForm() {
   };
 
   return (
-    <div>
-      <h2>Créer un meuble</h2>
+    <div className="card p-4 shadow-sm">
+      <h2 className="mb-4">Créer un meuble</h2>
+
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label className="form-label">Nom</label>
-          <input className="form-control" value={name} onChange={e => setName(e.target.value)} required />
+          <label className="form-label">Nom du meuble</label>
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Ex: Armoire design"
+            value={name}
+            onChange={e => setName(e.target.value)}
+            required
+          />
         </div>
 
         <div className="mb-3">
           <label className="form-label">Catégorie</label>
-          <select className="form-select" value={category} onChange={e => setCategory(e.target.value)} required>
-            <option value="">-- Sélectionner --</option>
+          <select
+            className="form-select"
+            value={category}
+            onChange={e => setCategory(e.target.value)}
+            required
+          >
+            <option value="">-- Sélectionner une catégorie --</option>
             {categories.map(cat => (
               <option key={cat._id} value={cat._id}>{cat.name}</option>
             ))}
@@ -77,16 +88,15 @@ function FurnitureForm() {
 
         <div className="mb-3">
           <label className="form-label">Matériaux utilisés</label>
-          <div className="form-check">
+          <div className="row row-cols-1 row-cols-sm-2">
             {materials.map(mat => (
-              <div key={mat._id}>
+              <div className="form-check mb-2" key={mat._id}>
                 <input
                   className="form-check-input"
                   type="checkbox"
-                  value={mat._id}
                   id={mat._id}
-                  onChange={() => handleMaterialToggle(mat._id)}
                   checked={selectedMaterials.includes(mat._id)}
+                  onChange={() => handleMaterialToggle(mat._id)}
                 />
                 <label className="form-check-label" htmlFor={mat._id}>
                   {mat.name} ({mat.type})
@@ -98,10 +108,16 @@ function FurnitureForm() {
 
         <div className="mb-3">
           <label className="form-label">Mots-clés (séparés par des virgules)</label>
-          <input className="form-control" value={keywords} onChange={e => setKeywords(e.target.value)} />
+          <input
+            type="text"
+            className="form-control"
+            placeholder="ex: bois, moderne, armoire"
+            value={keywords}
+            onChange={e => setKeywords(e.target.value)}
+          />
         </div>
 
-        <button className="btn btn-primary" type="submit">Créer</button>
+        <button type="submit" className="btn btn-primary">Créer le meuble</button>
       </form>
     </div>
   );

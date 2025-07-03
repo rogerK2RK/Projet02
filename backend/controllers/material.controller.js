@@ -49,3 +49,14 @@ exports.deleteMaterial = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+const Furniture = require('../models/Furniture');
+
+exports.getFurnitureByMaterial = async (req, res) => {
+  try {
+    const furniture = await Furniture.find({ materials: req.params.id }).populate('category');
+    res.json(furniture);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};

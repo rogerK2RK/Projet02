@@ -36,17 +36,30 @@ function MaterialForm() {
   };
 
   return (
-    <div>
-      <h2>Ajouter un matériau</h2>
-      <form onSubmit={handleSubmit} className="mb-4">
+    <div className="card p-4 shadow-sm">
+      <h2 className="mb-4"> Ajouter un matériau</h2>
+
+      <form onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label className="form-label">Nom</label>
-          <input className="form-control" value={name} onChange={e => setName(e.target.value)} required />
+          <label className="form-label">Nom du matériau</label>
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Ex : Frêne, Acier inox..."
+            value={name}
+            onChange={e => setName(e.target.value)}
+            required
+          />
         </div>
 
         <div className="mb-3">
           <label className="form-label">Type</label>
-          <select className="form-select" value={type} onChange={e => setType(e.target.value)} required>
+          <select
+            className="form-select"
+            value={type}
+            onChange={e => setType(e.target.value)}
+            required
+          >
             <option value="Bois">Bois</option>
             <option value="Fer">Fer</option>
             <option value="Plastique">Plastique</option>
@@ -55,8 +68,13 @@ function MaterialForm() {
 
         <div className="mb-3">
           <label className="form-label">Fournisseur</label>
-          <select className="form-select" value={supplier} onChange={e => setSupplier(e.target.value)} required>
-            <option value="">-- Sélectionner --</option>
+          <select
+            className="form-select"
+            value={supplier}
+            onChange={e => setSupplier(e.target.value)}
+            required
+          >
+            <option value="">-- Sélectionner un fournisseur --</option>
             {suppliers.map(s => (
               <option key={s._id} value={s._id}>{s.name}</option>
             ))}
@@ -65,10 +83,16 @@ function MaterialForm() {
 
         <div className="mb-3">
           <label className="form-label">Mots-clés (séparés par des virgules)</label>
-          <input className="form-control" value={keywords} onChange={e => setKeywords(e.target.value)} />
+          <input
+            type="text"
+            className="form-control"
+            placeholder="ex: bois, solide, naturel"
+            value={keywords}
+            onChange={e => setKeywords(e.target.value)}
+          />
         </div>
 
-        <button className="btn btn-primary" type="submit">Créer</button>
+        <button type="submit" className="btn btn-primary">Créer le matériau</button>
       </form>
     </div>
   );
