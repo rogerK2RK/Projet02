@@ -1,4 +1,4 @@
-# 🪑 Projet 02 — Application de gestion de meubles
+# Projet 02 — Application de gestion de meubles
 
 ## 🎯 Objectif
 
@@ -6,15 +6,15 @@ Cette application permet à un artisan designer de gérer ses meubles, les maté
 
 ---
 
-## 🚀 Lancer le projet
+## Lancer le projet
 
-### 📁 1. Cloner le dépôt
+### 1. Cloner le dépôt
 
 ```bash
 git clone https://github.com/votre-utilisateur/projet02.git
 cd projet02
 
-### 🔧 2. Installer les dépendances
+### 2. Installer les dépendances
 
 ##Backend
 
@@ -29,13 +29,13 @@ cd frontend
 npm install
 npm run dev
 
-### ⚙️ Prérequis
+### Prérequis
 
 Node.js
 MongoDB (en local ou via MongoDB Compass)
 npm (ou yarn)
 
-### 🔐 Accès de connexion
+### Accès de connexion
 
 Vous pouvez utiliser ces identifiants pour vous connecter à l’interface :
 
@@ -43,7 +43,7 @@ Vous pouvez utiliser ces identifiants pour vous connecter à l’interface :
 Email : admin@admin.com
 Mot de passe : admin123
 
-### 📝 Attention importante
+### Attention importante
 
 "
 Avant de pouvoir créer un meuble, vous devez d’abord créer des matériaux !
